@@ -1,0 +1,26 @@
+{% extends 'lab/base.html' %}
+
+{% block title %}Scenario - Login{% endblock %}
+
+{% block content %}
+<section class="hero-card">
+    <h1>Scenario 1: Login and First Impression</h1>
+    <p>Task: identify the institutional header, then log in using the primary action.</p>
+</section>
+
+<section class="mock-card login-layout">
+    <div>
+        <h2>Sign in</h2>
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="username">
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="password">
+        <button type="button">Sign in</button>
+    </div>
+    <div>
+        <h2>Support</h2>
+        <p>Use your institutional account credentials.</p>
+        <p>If needed, contact service desk.</p>
+    </div>
+</section>
+{% endblock %}

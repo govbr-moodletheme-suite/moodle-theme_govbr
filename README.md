@@ -1,64 +1,59 @@
-# moodle-theme_dsgovbr
+# GovBR Usability Lab
 
-[![Moodle Plugin CI](https://github.com/cte-zl-ifrn/moodle-theme_dsgovbr/actions/workflows/moodle-ci.yml/badge.svg)](https://github.com/cte-zl-ifrn/moodle-theme_dsgovbr/actions)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE.md)
 
-A Moodle theme built in conformance with the [Gov.BR Design System](https://www.gov.br/ds/), extending the default Boost theme.
+This project provides a standalone usability testing lab implemented only with Python and Django.
 
 ## Requirements
 
-| Component    | Version     |
-|-------------|-------------|
-| Moodle      | 5.1 or later |
-| theme_boost | 5.1 or later |
-| PHP         | 8.1 or later |
+- Python 3.10+
+- Django >= 5.2 and < 6.1
+- behave-django >= 1.7 and < 2.0
 
-## Features
+## Test Strategy
 
-- Full compliance with the Gov.BR Design System visual identity
-- Gov.BR institutional header and signature bar
-- Customisable logo, background image and brand colour
-- Raw SCSS injection (pre and post) for advanced customisation
-- Privacy-compliant: no personal data is stored by this theme
+1. Unit tests with Django test runner (`python manage.py test`).
+2. BDD scenarios with behave-django (`python manage.py behave`).
 
-## Installation
+Documentation:
 
-### Via Moodle Admin Interface
+- `docs/testing/UNIT_TEST_SCENARIOS.md`
+- `docs/usability/TEST_PLAN.md`
 
-1. Download the latest release ZIP from the [Releases](https://github.com/cte-zl-ifrn/moodle-theme_dsgovbr/releases) page.
-2. In Moodle, go to **Site Administration → Plugins → Install plugins**.
-3. Upload the ZIP file and follow the on-screen instructions.
-
-### Via Git (manual installation)
+## Run Locally
 
 ```bash
-cd /path/to/moodle/theme
-git clone https://github.com/cte-zl-ifrn/moodle-theme_dsgovbr.git dsgovbr
+cd usability_lab
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
 ```
 
-Then visit **Site Administration → Notifications** to complete the installation.
+Open `http://127.0.0.1:8000/`.
 
-## Configuration
+## Run Tests
 
-After installation, go to **Site Administration → Appearance → Themes → Gov.BR DS** to configure:
+```bash
+cd usability_lab
+python manage.py test
+python manage.py behave
+```
 
-- **Logo** – upload a custom logo displayed in the navigation bar.
-- **Background image** – image shown on the login page background.
-- **Brand colour** – primary colour used throughout the theme (default: Gov.BR blue `#1351B4`).
-- **Raw SCSS / Raw initial SCSS** – inject custom SCSS code.
+## Packaging
 
-## Privacy
+To create a release archive from git metadata:
 
-This theme does not store any personal data. See [classes/privacy/provider.php](classes/privacy/provider.php) and the [Moodle Privacy API](https://moodledev.io/docs/apis/subsystems/privacy) for details.
+```bash
+./scripts/build-release-zip.sh
+```
 
-## License
+The script uses `git archive` with repository attributes.
 
-This project is licensed under the **GNU General Public License v3.0 or later**. See [LICENSE.md](LICENSE.md) for the full text.
+Release archives include runtime Django code (for `usability_lab`) and exclude only development files:
 
-## Authors
-
-Developed by [CTE-ZL IFRN](https://github.com/cte-zl-ifrn).
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/cte-zl-ifrn/moodle-theme_dsgovbr).
+- CI and editor metadata (`.github/`, `.vscode/`)
+- local documentation (`docs/`)
+- test suites (`usability_lab/features/`, `usability_lab/lab/tests.py`)
+- packaging helpers (`scripts/`)

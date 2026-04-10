@@ -1,0 +1,35 @@
+name: Build Release ZIP
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  build-release-zip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build plugin archive
+        run: ./scripts/build-release-zip.sh
+
+      - name: Locate generated zip
+        id: artefact
+        run: |
+          ZIP_PATH=$(ls -1 theme_dsgovbr-*.zip | head -n 1)
+          echo "zip_path=$ZIP_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-dsgovbr-release-zip
+          path: ${{ steps.artefact.outputs.zip_path }}
+
+      - name: Attach zip to GitHub release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.artefact.outputs.zip_path }}

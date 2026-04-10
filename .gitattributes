@@ -1,0 +1,9 @@
+# Exclude development-only files from release archives.
+.github/ export-ignore
+docs/ export-ignore
+scripts/ export-ignore
+.vscode/ export-ignore
+
+# Exclude test suites from release archive.
+usability_lab/features/ export-ignore
+usability_lab/lab/tests.py export-ignore

@@ -1,0 +1,10 @@
+# Build artefacts.
+*.zip
+
+# Python / Django usability lab.
+usability_lab/.venv/
+usability_lab/.pytest_cache/
+usability_lab/__pycache__/
+usability_lab/**/__pycache__/
+usability_lab/db.sqlite3
+usability_lab/staticfiles/

@@ -1,0 +1,2 @@
+Django>=5.2,<6.1
+behave-django>=1.7,<2.0

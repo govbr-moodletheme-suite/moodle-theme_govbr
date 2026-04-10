@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en-gb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Gov.BR Theme Usability Lab{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/govbr-lab.css">
+</head>
+<body>
+    <a class="skip-link" href="#maincontent">Skip to content</a>
+
+    <header class="govbr-header-top" role="banner">
+        <div class="container">
+            <img class="govbr-logo" src="https://www.gov.br/ds/assets/img/govbr.svg" alt="Gov BR">
+            <strong>Federal Government</strong>
+            <span class="header-note">Usability simulation environment</span>
+        </div>
+    </header>
+
+    <main id="maincontent" class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <aside class="notes-panel" aria-label="Session notes">
+        <h2>Session Notes</h2>
+        <p>Capture quick observations during tests and export JSON evidence.</p>
+
+        <h3>Participant Profile</h3>
+        <label for="participant-id">Participant ID</label>
+        <input id="participant-id" type="text" placeholder="P-001">
+
+        <label for="participant-role">Role</label>
+        <select id="participant-role">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+            <option value="administrator">Administrator</option>
+            <option value="other">Other</option>
+        </select>
+
+        <h3>Task Metrics</h3>
+        <div class="metrics-grid">
+            <label>
+                Scenario 1 time (s)
+                <input id="metric-time-login" type="number" min="0" step="1" placeholder="0">
+            </label>
+            <label>
+                Scenario 1 succeeded
+                <input id="metric-success-login" type="checkbox">
+            </label>
+
+            <label>
+                Scenario 2 time (s)
+                <input id="metric-time-dashboard" type="number" min="0" step="1" placeholder="0">
+            </label>
+            <label>
+                Scenario 2 succeeded
+                <input id="metric-success-dashboard" type="checkbox">
+            </label>
+
+            <label>
+                Scenario 3 time (s)
+                <input id="metric-time-course" type="number" min="0" step="1" placeholder="0">
+            </label>
+            <label>
+                Scenario 3 succeeded
+                <input id="metric-success-course" type="checkbox">
+            </label>
+
+            <label>
+                Scenario 4 time (s)
+                <input id="metric-time-settings" type="number" min="0" step="1" placeholder="0">
+            </label>
+            <label>
+                Scenario 4 succeeded
+                <input id="metric-success-settings" type="checkbox">
+            </label>
+
+            <label>
+                Critical errors
+                <input id="metric-critical-errors" type="number" min="0" step="1" value="0">
+            </label>
+            <label>
+                Confidence (1-5)
+                <input id="metric-confidence" type="number" min="1" max="5" step="1" value="3">
+            </label>
+        </div>
+
+        <textarea id="session-notes" rows="8" placeholder="Example: User could not find course actions in under 30 seconds."></textarea>
+        <div class="notes-actions">
+            <button type="button" id="save-notes">Save</button>
+            <button type="button" id="download-notes">Download Notes JSON</button>
+            <button type="button" id="download-report">Download Participant Report</button>
+        </div>
+        <p id="notes-feedback" class="notes-feedback" aria-live="polite"></p>
+    </aside>
+
+    <script src="/static/js/lab-notes.js"></script>
+</body>
+</html>

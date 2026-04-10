@@ -1,0 +1,36 @@
+{% extends 'lab/base.html' %}
+
+{% block title %}Scenario - Dashboard{% endblock %}
+
+{% block content %}
+<section class="hero-card">
+    <h1>Scenario 2: Dashboard Orientation</h1>
+    <p>Task: locate navigation, announcements, and quickest path to courses.</p>
+</section>
+
+<nav class="mock-tabs" aria-label="Primary navigation">
+    <a href="#" class="active">Home</a>
+    <a href="#">My courses</a>
+    <a href="#">Calendar</a>
+    <a href="#">Messages</a>
+</nav>
+
+<section class="two-col-grid">
+    <article class="mock-card">
+        <h2>Announcements</h2>
+        <ul>
+            <li>Enrolment closes in 3 days.</li>
+            <li>New accessibility webinar available.</li>
+            <li>Maintenance window on Saturday.</li>
+        </ul>
+    </article>
+    <article class="mock-card">
+        <h2>Quick actions</h2>
+        <ul>
+            <li><a href="#">Open my courses</a></li>
+            <li><a href="#">Download transcript</a></li>
+            <li><a href="#">Edit profile</a></li>
+        </ul>
+    </article>
+</section>
+{% endblock %}

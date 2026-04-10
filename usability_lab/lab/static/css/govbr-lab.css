@@ -1,0 +1,246 @@
+:root {
+    --govbr-blue: #1351b4;
+    --govbr-blue-dark: #0c326f;
+    --govbr-bg: #f7f8fb;
+    --govbr-surface: #ffffff;
+    --govbr-text: #1b1f23;
+    --govbr-muted: #556070;
+    --govbr-border: #d0d7e2;
+    --govbr-focus: #ffcd07;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Noto Sans", "Segoe UI", sans-serif;
+    color: var(--govbr-text);
+    background: linear-gradient(140deg, #f8fbff 0%, #f3f6ff 45%, #eef2f8 100%);
+}
+
+.container {
+    width: min(100%, 980px);
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.skip-link {
+    position: absolute;
+    left: -1000px;
+    top: 0;
+    background: var(--govbr-focus);
+    color: #000;
+    padding: 8px 12px;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    left: 12px;
+    top: 12px;
+}
+
+.govbr-header-top {
+    background: var(--govbr-blue);
+    color: #fff;
+    border-bottom: 4px solid #ffcd07;
+}
+
+.govbr-header-top .container {
+    min-height: 64px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.govbr-logo {
+    height: 28px;
+}
+
+.header-note {
+    margin-left: auto;
+    opacity: 0.92;
+}
+
+main.container {
+    padding-top: 24px;
+    padding-bottom: 48px;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    line-height: 1.3;
+}
+
+.hero-card,
+.mock-card,
+.notes-panel {
+    background: var(--govbr-surface);
+    border: 1px solid var(--govbr-border);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(12, 50, 111, 0.08);
+}
+
+.hero-card {
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.mock-card {
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.scenario-card {
+    background: #fff;
+    border: 1px solid var(--govbr-border);
+    border-radius: 10px;
+    padding: 14px;
+}
+
+.action-link {
+    color: var(--govbr-blue-dark);
+    font-weight: 700;
+}
+
+.action-link:focus,
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+    outline: 3px solid var(--govbr-focus);
+    outline-offset: 2px;
+}
+
+.mock-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.mock-tabs a {
+    border: 1px solid var(--govbr-border);
+    background: #fff;
+    border-radius: 999px;
+    padding: 8px 14px;
+    color: var(--govbr-blue-dark);
+    text-decoration: none;
+}
+
+.mock-tabs a.active {
+    background: var(--govbr-blue);
+    color: #fff;
+    border-color: var(--govbr-blue);
+}
+
+.two-col-grid,
+.login-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--govbr-border);
+    font: inherit;
+}
+
+button {
+    background: var(--govbr-blue);
+    color: #fff;
+    border-color: var(--govbr-blue);
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+small {
+    display: block;
+    color: var(--govbr-muted);
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+.notes-panel {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    width: min(360px, calc(100% - 24px));
+    padding: 14px;
+}
+
+.notes-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 10px;
+    margin-bottom: 10px;
+}
+
+.metrics-grid label {
+    margin-bottom: 0;
+    font-size: 0.92rem;
+}
+
+.metrics-grid input[type="checkbox"] {
+    width: auto;
+    margin-top: 8px;
+}
+
+.notes-feedback {
+    color: var(--govbr-muted);
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 820px) {
+    .two-col-grid,
+    .login-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .header-note {
+        margin-left: 0;
+    }
+
+    .notes-panel {
+        position: static;
+        width: auto;
+        margin: 0 16px 16px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
