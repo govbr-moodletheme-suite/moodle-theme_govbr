@@ -1,0 +1,15 @@
+config:
+  default: true
+  MD013:
+    line_length: 140
+  MD029: false
+  MD032: false
+  MD034: false
+  MD038: false
+  MD041: false
+  MD033: false
+globs:
+  - "**/*.md"
+ignores:
+  - "**/.venv/**"
+  - "LICENSE.md"

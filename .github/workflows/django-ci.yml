@@ -1,4 +1,4 @@
-name: Django Test Suite
+name: Django Quality and Coverage
 
 on:
   push:
@@ -7,8 +7,11 @@ on:
     branches: [ main ]
 
 jobs:
-  django-tests:
+  quality:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -22,14 +25,19 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r usability_lab/requirements.txt
+          pip install -r usability_lab/requirements-dev.txt
 
-      - name: Run Django unit tests
+      - name: Run lint and SAST hooks
         run: |
-          cd usability_lab
-          python manage.py test
+          pre-commit run --all-files
 
-      - name: Run behave-django scenarios
+      - name: Run tests, BDD and coverage gate
         run: |
-          cd usability_lab
-          python manage.py behave
+          pre-commit run --all-files --hook-stage pre-push
+
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: usability_lab/coverage.xml
+          fail_ci_if_error: true
+          use_oidc: true

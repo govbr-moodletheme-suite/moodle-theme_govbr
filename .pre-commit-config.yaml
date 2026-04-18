@@ -1,0 +1,74 @@
+default_language_version:
+  python: python3
+
+exclude: ^\.vscode/
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.8
+    hooks:
+      - id: ruff
+        files: ^usability_lab/.*\.py$
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.8.3
+    hooks:
+      - id: bandit
+        args: ["-r", "usability_lab", "-x", "usability_lab/features"]
+        files: ^usability_lab/.*\.py$
+        pass_filenames: false
+
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.18.1
+    hooks:
+      - id: markdownlint-cli2
+        args: ["--config", ".markdownlint-cli2.yaml"]
+        files: \.(md|markdown)$
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.24.0
+    hooks:
+      - id: eslint
+        files: ^usability_lab/.*\.js$
+
+  - repo: https://github.com/djlint/djLint
+    rev: v1.36.4
+    hooks:
+      - id: djlint
+        args: ["--profile=django", "--reformat", "--quiet"]
+        files: ^usability_lab/.*\.html$
+
+  - repo: local
+    hooks:
+      - id: stylelint-local
+        name: Stylelint (local)
+        entry: stylelint
+        language: node
+        additional_dependencies:
+          - stylelint@16.17.0
+        args: ["--allow-empty-input"]
+        files: ^usability_lab/.*\.css$
+
+      - id: semgrep-local
+        name: Semgrep SAST (local)
+        entry: bash -c 'semgrep --config=auto --error --include "usability_lab/**/*.py" --include "usability_lab/**/*.js" --include "usability_lab/**/*.html" --include "usability_lab/**/*.css" --include "usability_lab/**/*.md" --include "README.md" --include "docs/**/*.md" .'
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: django-tests-coverage
+        name: Django tests and coverage gate
+        entry: bash -c 'cd usability_lab && coverage erase && coverage run --source=lab,usability_lab_project manage.py test && coverage run -a --source=lab,usability_lab_project manage.py behave && coverage report --fail-under=80 && coverage xml -o coverage.xml && python ../scripts/check_coverage_gate.py coverage.xml .coverage-baseline'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]

@@ -85,7 +85,7 @@
                     }
                 });
             }
-        } catch (error) {
+        } catch (_error) {
             // Ignore invalid storage payload and start with empty form.
         }
     }

@@ -1,23 +1,20 @@
 {% extends 'lab/base.html' %}
-
 {% block title %}Gov.BR Theme Usability Lab{% endblock %}
-
 {% block content %}
-<section class="hero-card">
-    <h1>Gov.BR Theme Usability Lab</h1>
-    <p>Run independent usability sessions without bootstrapping Moodle. Each scenario focuses on one interaction goal.</p>
-</section>
-
-<section>
-    <h2>Scenarios</h2>
-    <div class="scenario-grid">
-        {% for scenario in scenarios %}
-        <article class="scenario-card">
-            <h3>{{ scenario.title }}</h3>
-            <p>{{ scenario.goal }}</p>
-            <a class="action-link" href="/scenario/{{ scenario.slug }}/">Open scenario</a>
-        </article>
-        {% endfor %}
-    </div>
-</section>
+    <section class="hero-card">
+        <h1>Gov.BR Theme Usability Lab</h1>
+        <p>Run independent usability sessions without bootstrapping Moodle. Each scenario focuses on one interaction goal.</p>
+    </section>
+    <section>
+        <h2>Scenarios</h2>
+        <div class="scenario-grid">
+            {% for scenario in scenarios %}
+                <article class="scenario-card">
+                    <h3>{{ scenario.title }}</h3>
+                    <p>{{ scenario.goal }}</p>
+                    <a class="action-link" href="/scenario/{{ scenario.slug }}/">Open scenario</a>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

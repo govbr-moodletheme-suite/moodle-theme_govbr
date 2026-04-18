@@ -41,6 +41,30 @@ python manage.py test
 python manage.py behave
 ```
 
+## Pre-commit
+
+Enable local quality gates:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r usability_lab/requirements-dev.txt
+pre-commit install
+pre-commit install --hook-type pre-push
+```
+
+What runs locally:
+
+- Lint: Python, CSS, JavaScript, Markdown, and HTML.
+- SAST: bandit and semgrep.
+- Pre-push gate: unit tests, behave-django scenarios, and coverage validation.
+
+Coverage policy:
+
+- Minimum required coverage: 80% (hard fail below this).
+- Ideal target: 95%.
+- If `usability_lab/.coverage-baseline` exists, current coverage cannot be lower than that baseline.
+
 ## Packaging
 
 To create a release archive from git metadata:

@@ -8,3 +8,6 @@ usability_lab/__pycache__/
 usability_lab/**/__pycache__/
 usability_lab/db.sqlite3
 usability_lab/staticfiles/
+usability_lab/.coverage
+usability_lab/coverage.xml
+usability_lab/htmlcov/

@@ -1,24 +1,23 @@
 {% extends 'lab/base.html' %}
-
 {% block title %}Scenario - Settings{% endblock %}
-
 {% block content %}
-<section class="hero-card">
-    <h1>Scenario 4: Theme Settings Discoverability</h1>
-    <p>Task: change brand colour and logo path, then save configuration.</p>
-</section>
-
-<form class="mock-card settings-form">
-    <label for="brand-colour">Brand colour</label>
-    <input id="brand-colour" type="text" value="#1351B4" aria-describedby="brand-colour-help">
-    <small id="brand-colour-help">Use hexadecimal format (example: #0C326F).</small>
-
-    <label for="logo-path">Logo path</label>
-    <input id="logo-path" type="text" value="/theme/dsgovbr/pix/logo.svg">
-
-    <label for="background-path">Background image path</label>
-    <input id="background-path" type="text" value="/theme/dsgovbr/pix/login-bg.jpg">
-
-    <button type="button">Save changes</button>
-</form>
+    <section class="hero-card">
+        <h1>Scenario 4: Theme Settings Discoverability</h1>
+        <p>Task: change brand colour and logo path, then save configuration.</p>
+    </section>
+    <form class="mock-card settings-form">
+        <label for="brand-colour">Brand colour</label>
+        <input id="brand-colour"
+               type="text"
+               value="#1351B4"
+               aria-describedby="brand-colour-help">
+        <small id="brand-colour-help">Use hexadecimal format (example: #0C326F).</small>
+        <label for="logo-path">Logo path</label>
+        <input id="logo-path" type="text" value="/theme/dsgovbr/pix/logo.svg">
+        <label for="background-path">Background image path</label>
+        <input id="background-path"
+               type="text"
+               value="/theme/dsgovbr/pix/login-bg.jpg">
+        <button type="button">Save changes</button>
+    </form>
 {% endblock %}

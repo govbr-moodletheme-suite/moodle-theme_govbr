@@ -56,6 +56,26 @@ python manage.py test
 python manage.py behave
 ```
 
+## Pre-commit and coverage gate
+
+Install development tooling:
+
+```bash
+pip install -r requirements-dev.txt
+pre-commit install
+pre-commit install --hook-type pre-push
+```
+
+Coverage rules enforced in pre-push and CI:
+
+- Minimum coverage: 80%.
+- Ideal target: 95%.
+- Coverage must be greater than or equal to `./.coverage-baseline` when this file is present.
+
+## CI/CD parity
+
+The CI workflow runs the same pre-commit checks and uploads coverage reports to Codecov.
+
 ## Packaging policy
 
 This app is development-only and is excluded from release archives through `.gitattributes` (`export-ignore`).
