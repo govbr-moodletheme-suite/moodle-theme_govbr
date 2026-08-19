@@ -15,10 +15,10 @@ This project provides a standalone usability testing lab implemented only with P
 1. Unit tests with Django test runner (`python manage.py test`).
 2. BDD scenarios with behave-django (`python manage.py behave`).
 
-Documentation:
+Documentation (Sphinx, in `docs/`, build with `sphinx-build docs docs/_build/html`):
 
-- `docs/testing/UNIT_TEST_SCENARIOS.md`
-- `docs/usability/TEST_PLAN.md`
+- `docs/testing.rst`
+- `docs/usability-test-plan.rst`
 
 ## Run Locally
 

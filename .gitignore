@@ -1,6 +1,10 @@
 # Build artefacts.
 *.zip
 
+# Sphinx documentation (docs/).
+docs/_build/
+.venv/
+
 # Python / Django usability lab.
 usability_lab/.venv/
 usability_lab/.pytest_cache/
