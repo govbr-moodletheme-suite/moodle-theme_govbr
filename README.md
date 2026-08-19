@@ -15,10 +15,18 @@ This project provides a standalone usability testing lab implemented only with P
 1. Unit tests with Django test runner (`python manage.py test`).
 2. BDD scenarios with behave-django (`python manage.py behave`).
 
-Documentation (Sphinx, in `docs/`, build with `sphinx-build docs docs/_build/html`):
+Documentation: published at https://govbr-moodletheme-suite.github.io/moodle-theme_govbr/
+(built automatically on every push to `docs/` via `.github/workflows/docs.yml`, using the
+[moodle-docs-theme](https://pypi.org/project/moodle-docs-theme/) Sphinx theme). To build
+locally:
 
-- `docs/testing.rst`
-- `docs/usability-test-plan.rst`
+```bash
+pip install sphinx moodle-docs-theme
+sphinx-build -W -b html docs docs/_build/html
+```
+
+Pages: `docs/overview.rst`, `docs/installation.rst`, `docs/testing.rst`,
+`docs/usability-test-plan.rst`, `docs/development.rst`.
 
 ## Run Locally
 
